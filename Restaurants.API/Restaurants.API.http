@@ -1,0 +1,95 @@
+@Restaurants.API_HostAddress = https://localhost:7153
+@token = CfDJ8IGx6C_J58VGnHAzo-b4N4ryKI6QjJAZlr-uKwcSPa7g8QheE3a7pt2j0Ux1QKAdrSgKGC9XpnijYP5yGntAhugRnychcR5hyofDiJ8W5i4ISNneokOHMguG0dID2dI8xyGs2Qyphj7DJeNqsma73-AnUqfdrOeZ3HP0rBMJvcyd3HZTUOxQpqphd9Ko3U_-wXGAJ1eF6R7Vi7cqCzSK5mqurOzAiOJQZ5J51__E5d05mXuXb6y-VyaBXlzs3XOMIaPQ6VuiZO06dMESM2KnzITw_w--R89xVqbFrICuyfTFUhjkEaGvWK4oz3xz8lq1TpX1Shg3_K-ZAVQAZGDTWdiZi6Q0L_m8w760yi-e14pQjtx08Bt7_xhktjOsQ2ZcngX5cyn4QXyFptZrZwFFM6wO_RIFq2uqs1EtEG-a2Olw_cyPxHKqJBzKqPOw6-te9o2Z9J0UGXGUGIc6UtMX_fu_QQJB5_Z4UM_ACS7TuLNZ0Y6NF3Gj6QMBIB-2qKUBHUMwekSk2DWlJjseXNu8Exs5EtSB6B81GAewi-cUbXs6wyRRqNG30Fpm_a0J1QihKuBs9vZ5n6C-JJDpCMHqLR2YW8nWFXmLS5NCtJh-31x1nIyUsVW9CR9goxpwIJ9jbYd8xKFQ6cmMwFagtmfKFepK8eoOZZRs6ONc5ksGFAPrz-FcrCOguoWr4owuMVE1ZE3-y43oM6Db07sYiccyMN8
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants
+Authorization : Bearer {{token}}
+
+###
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants/1
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+
+{
+    "name": "Sushi Place",
+    "description": "A cozy spot for fresh sushi.",
+    "category": "Japanese",
+    "contactEmail": "sushi@example.com",
+    "contactNumber": "123456789",
+    "hasDelivery": false,
+    "city": "San Francisco",
+    "street": "Market Street",
+    "postalCode": "94-103"
+}
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+
+{
+    "name": "Burger Joint",
+    "description": "A popular place for gourmet burgers.",
+    "category": "banana",
+    "contactEmail": "23",
+    "contactNumber": "dd",
+    "postalCode": "90028"
+}
+
+###
+
+PATCH {{Restaurants.API_HostAddress}}/api/restaurants/2
+Content-Type: application/json
+
+{
+  "name": "OptimusPrime",
+  "description": "Come get some"
+}
+
+###
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurant/1/dishes
+Content-Type: application/json
+
+{
+    "name": "Dish Name",
+    "description": "Dish Description",
+    "price": 9.99,
+    "kiloCalories": -1
+}
+
+###
+
+@restaurantId=2
+GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes
+
+###
+
+@dishId=3
+GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes/{{dishId}}
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/identity/register
+Content-Type: application/json
+
+{
+  "email": "doraemon@gmail.com",
+  "password": "Password1!"
+}
+
+###
+POST {{Restaurants.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+
+{
+  "email": "doraemon@gmail.com",
+  "password": "Password1!"
+}
