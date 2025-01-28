@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;
+using Restaurants.Domain.Specifications;
 using Restaurants.Infrastructure.Persistence;
 using System.Linq.Expressions;
 
@@ -8,6 +9,12 @@ namespace Restaurants.Infrastructure.Repositories
 {
     internal class RestaurantRepository(RestaurantDbContext dbContext) : IRestaurantsRepository
     {
+        private IQueryable<Restaurant> ApplySpecification(Specification<Restaurant> specification)
+        {
+            return SpecificationEvaluator<Restaurant>.GetQuery(
+                dbContext.Restaurants, specification);
+        }
+
         public async Task<int> Create(Restaurant restaurant)
         {
             dbContext.Restaurants.Add(restaurant);
@@ -21,19 +28,21 @@ namespace Restaurants.Infrastructure.Repositories
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Restaurant>> GetAllAsync()
+        public async Task<IEnumerable<Restaurant>> GetAllAsync(Expression<Func<Restaurant, bool>>? predicate = null)
         {
-            var restaurants = await dbContext.Restaurants.ToListAsync();
+            var query = dbContext.Restaurants.AsQueryable();
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            var restaurants = await query.ToListAsync();
             return restaurants;
         }
 
         public async Task<Restaurant?> GetOneAsync(int id)
         {
-            var restaurant = await dbContext.Restaurants
-                .Include(r => r.Dishes)
-                .FirstOrDefaultAsync(r => r.Id == id);
-
-            return restaurant;
+            var specification = new GetRestaurantWithDishesSpecification(id);
+            return await ApplySpecification(specification).FirstOrDefaultAsync();
         }
 
         public async Task<Restaurant> PatchAsync(Restaurant restaurant)

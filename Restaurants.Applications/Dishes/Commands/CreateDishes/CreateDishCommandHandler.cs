@@ -4,6 +4,8 @@ using Microsoft.Extensions.Logging;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Exceptions;
 using Restaurants.Domain.Repositories;
+using Restaurants.Domain.Services;
+using Restaurants.Infrastructure.Authorization;
 
 
 namespace Restaurants.Applications.Dishes.Commands.CreateDishes
@@ -12,7 +14,8 @@ namespace Restaurants.Applications.Dishes.Commands.CreateDishes
         ILogger<CreateDishCommandHandler> logger,
         IMapper mapper,
         IRestaurantsRepository restaurantsRepository,
-        IDishesRepository dishesRepository
+        IDishesRepository dishesRepository,
+        IRestaurantAuthorizationService restaurantAuthorizationService
         ) : IRequestHandler<CreateDishCommand, int>
     {
         public async Task<int> Handle(CreateDishCommand request, CancellationToken cancellationToken)
@@ -22,6 +25,7 @@ namespace Restaurants.Applications.Dishes.Commands.CreateDishes
 
             var dish = mapper.Map<Dish>(request);
 
+            if (!restaurantAuthorizationService.Authorize(restaurant, ResourceOperation.Create)) throw new ForbidenException();
             var dishId = await dishesRepository.Create(dish);
 
             return dishId;

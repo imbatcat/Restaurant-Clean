@@ -1,9 +1,7 @@
 ﻿namespace Restaurants.Domain.Entities
 {
-    public class Restaurant
+    public class Restaurant : BaseEntity
     {
-        public int Id { get; set; }
-
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;
         public string Category { get; set; } = default!;
@@ -14,5 +12,8 @@
 
         public Address? Address { get; set; }
         public List<Dish> Dishes { get; set; } = new();
+
+        public string OwnerId { get; set; } = default!;
+        public User Owner { get; set; } = default!;
     }
 }

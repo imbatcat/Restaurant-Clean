@@ -7,6 +7,7 @@ using Restaurants.API.Middlewares;
 using Restaurants.Domain.Entities;
 using Microsoft.OpenApi.Models;
 using Restaurants.API.Extensions;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddPresentation();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplications();
-
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+        options.JsonSerializerOptions.WriteIndented = true;
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+    });
 
 var app = builder.Build();
 
@@ -46,6 +55,8 @@ app.MapGroup("api/identity")
     // Map identity-related API endpoints for the User entity
     .MapIdentityApi<User>();
 
+//Not needed since Identity handles that part
+//app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using Restaurants.Applications.Users;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Exceptions;
 
-namespace Restaurants.Applications.Users.Commands
+namespace Restaurants.Applications.Users.Commands.UpdateUserDetails
 {
     internal class UpdateUserDetailsCommandHandler(
         ILogger<UpdateUserDetailsCommandHandler> logger,

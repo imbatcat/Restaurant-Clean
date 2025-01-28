@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Restaurants.Domain.Exceptions
 {
-    public class NotFoundException(string resourceType, string resourceIdentifier) : Exception($"{resourceType} with id: {resourceIdentifier} does not exists")
+    public class NotFoundException : Exception
     {
+        public NotFoundException(string resourceType, string resourceIdentifier)
+            : base($"{resourceType} with id: {resourceIdentifier} does not exist")
+        {
+        }
+
+        public NotFoundException(string message) : base(message)
+        {
+        }
     }
 }

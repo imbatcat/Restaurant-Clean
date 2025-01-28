@@ -21,6 +21,16 @@ namespace Restaurants.API.Middlewares
 
                 logger.LogWarning(message: notFound.Message);
             }
+            catch (ForbidenException)
+            {
+                context.Response.StatusCode = 403;
+                await context.Response.WriteAsync("Access forbidden");
+
+            } catch(UnauthorizedAccessException)
+            {
+                context.Response.StatusCode = 401;
+                await context.Response.WriteAsync("Unauthorized");
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
