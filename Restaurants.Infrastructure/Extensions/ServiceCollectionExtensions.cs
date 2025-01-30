@@ -24,7 +24,7 @@ namespace Restaurants.Infrastructure.Extensions
             services.AddDbContextPool<RestaurantDbContext>(options =>
             {
                 options.UseSqlServer(connectionString)
-                    .EnableSensitiveDataLogging().LogTo(Console.WriteLine);
+                    .EnableSensitiveDataLogging();
             });
             #region Identities
             //identity api endpoints already handle 

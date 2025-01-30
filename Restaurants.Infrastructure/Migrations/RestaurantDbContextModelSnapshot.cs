@@ -185,6 +185,183 @@ namespace Restaurants.Infrastructure.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("Dishes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Ratione dolorem quia magni eos ipsa quaerat quo quia dolorum.",
+                            Name = "Rustic Plastic Chips",
+                            Price = 85.604326347552255m,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Aliquid est impedit.",
+                            KiloCalories = 811,
+                            Name = "Fantastic Fresh Shirt",
+                            Price = 34.621881233606565m,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Ea inventore dolore repudiandae facilis sit id.",
+                            KiloCalories = 453,
+                            Name = "Rustic Soft Table",
+                            Price = 21.862858023814540m,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Doloremque et odit sit magni.",
+                            KiloCalories = 207,
+                            Name = "Generic Metal Mouse",
+                            Price = 16.667856845380370m,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Officiis repellendus reiciendis corrupti doloribus et consectetur.",
+                            Name = "Incredible Plastic Chicken",
+                            Price = 38.15240753078040m,
+                            RestaurantId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Enim voluptatem ea et est nemo repudiandae aut voluptatibus laboriosam.",
+                            KiloCalories = 770,
+                            Name = "Gorgeous Metal Shoes",
+                            Price = 53.412204589055475m,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Id vitae beatae est sapiente iure debitis optio.",
+                            KiloCalories = 333,
+                            Name = "Tasty Metal Pants",
+                            Price = 10.7983368386991415m,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Quisquam qui et ad sit dicta necessitatibus.",
+                            KiloCalories = 808,
+                            Name = "Awesome Soft Hat",
+                            Price = 51.142260460253530m,
+                            RestaurantId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Rem omnis enim harum sit provident delectus perferendis.",
+                            KiloCalories = 405,
+                            Name = "Intelligent Granite Bike",
+                            Price = 14.0563118615687740m,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Iste dolores error soluta adipisci velit.",
+                            Name = "Handcrafted Metal Pants",
+                            Price = 59.496639762227525m,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "Enim ad quia eum hic fuga.",
+                            KiloCalories = 289,
+                            Name = "Sleek Soft Keyboard",
+                            Price = 72.376484666095630m,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Description = "Aut asperiores culpa voluptates blanditiis.",
+                            KiloCalories = 881,
+                            Name = "Intelligent Frozen Chicken",
+                            Price = 44.706719647735960m,
+                            RestaurantId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Description = "Aut accusamus eos blanditiis animi neque eos soluta assumenda.",
+                            KiloCalories = 706,
+                            Name = "Small Granite Car",
+                            Price = 30.850574953104420m,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Description = "Sed sint aperiam impedit et cumque consequatur explicabo.",
+                            KiloCalories = 627,
+                            Name = "Gorgeous Frozen Ball",
+                            Price = 87.395816379764170m,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Description = "Earum perferendis ea ipsam facilis.",
+                            KiloCalories = 618,
+                            Name = "Ergonomic Metal Mouse",
+                            Price = 47.132388483151610m,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Description = "Voluptatum quaerat et eaque eius.",
+                            KiloCalories = 115,
+                            Name = "Fantastic Concrete Shirt",
+                            Price = 66.476874976474960m,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Description = "Voluptas fugit mollitia rerum voluptatibus illo expedita aliquam.",
+                            Name = "Ergonomic Steel Mouse",
+                            Price = 89.715635766281735m,
+                            RestaurantId = 4
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Description = "Libero nesciunt non reprehenderit porro facilis consequatur rem libero.",
+                            KiloCalories = 834,
+                            Name = "Licensed Cotton Mouse",
+                            Price = 88.785283086101440m,
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Description = "Tempore quis quo quia optio est et numquam deserunt dolorem.",
+                            Name = "Ergonomic Soft Salad",
+                            Price = 70.665519814735370m,
+                            RestaurantId = 5
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Description = "Aliquam voluptas omnis occaecati voluptate vel maiores commodi sit.",
+                            KiloCalories = 508,
+                            Name = "Handmade Granite Fish",
+                            Price = 85.37638331973920m,
+                            RestaurantId = 5
+                        });
                 });
 
             modelBuilder.Entity("Restaurants.Domain.Entities.Restaurant", b =>
@@ -225,6 +402,63 @@ namespace Restaurants.Infrastructure.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Restaurants");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Category = "Japanese",
+                            ContactEmail = "Justus.Weimann48@hotmail.com",
+                            Contactnumber = "947-415-2087",
+                            Description = "Eum non qui. Enim minima a eligendi mollitia explicabo delectus blanditiis voluptas ipsum. Accusamus tempora odio cupiditate esse itaque sed consequatur error.",
+                            HasDelivery = false,
+                            Name = "Kunze - Kuhn",
+                            OwnerId = "8c19f413-f040-4142-a7dc-3b369e46aaeb"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = "American",
+                            ContactEmail = "Ophelia_Dooley90@yahoo.com",
+                            Contactnumber = "1-338-278-6024",
+                            Description = "Amet laboriosam consequuntur vel qui sed et qui nostrum maxime. Dicta aperiam ducimus ratione doloremque. Ullam eligendi nemo.",
+                            HasDelivery = true,
+                            Name = "Veum - Dooley",
+                            OwnerId = "8c19f413-f040-4142-a7dc-3b369e46aaeb"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = "Italian",
+                            ContactEmail = "Ethan_Gibson@gmail.com",
+                            Contactnumber = "(810) 957-6828",
+                            Description = "Quisquam aspernatur ex sequi natus repudiandae. Nam unde est. Nam voluptates itaque alias non deserunt. Quia voluptatem qui. Praesentium unde odit ipsum provident iste molestiae velit.",
+                            HasDelivery = false,
+                            Name = "Kuhic, Hilpert and Runolfsdottir",
+                            OwnerId = "8c19f413-f040-4142-a7dc-3b369e46aaeb"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = "Chinese",
+                            ContactEmail = "Maeve.Brown@gmail.com",
+                            Contactnumber = "758-651-2836 x6474",
+                            Description = "Neque facilis aut quia inventore. Adipisci consequatur et ad. In aut est voluptatibus omnis totam suscipit ipsum. Blanditiis officia vitae et ut. Ullam quis hic eum repellat quidem quo. At expedita sunt molestiae quas saepe.",
+                            HasDelivery = false,
+                            Name = "Champlin, Baumbach and Johns",
+                            OwnerId = "8c19f413-f040-4142-a7dc-3b369e46aaeb"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Category = "American",
+                            ContactEmail = "Vern.Cole@gmail.com",
+                            Contactnumber = "(448) 218-0960 x18433",
+                            Description = "Beatae repellendus iure voluptatibus dignissimos autem et ut natus qui. Est aperiam fugiat. Amet quia quia sint consequatur aut et ducimus. Quam aut qui pariatur velit nesciunt est ex aut.",
+                            HasDelivery = true,
+                            Name = "Torp Group",
+                            OwnerId = "8c19f413-f040-4142-a7dc-3b369e46aaeb"
+                        });
                 });
 
             modelBuilder.Entity("Restaurants.Domain.Entities.User", b =>
@@ -386,6 +620,43 @@ namespace Restaurants.Infrastructure.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("RestaurantId");
+
+                            b1.HasData(
+                                new
+                                {
+                                    RestaurantId = 1,
+                                    City = "Schadenside",
+                                    PostalCode = "74817-0282",
+                                    Street = "834 Loraine Rue"
+                                },
+                                new
+                                {
+                                    RestaurantId = 2,
+                                    City = "New Prudencemouth",
+                                    PostalCode = "11385-0140",
+                                    Street = "36401 Senger Path"
+                                },
+                                new
+                                {
+                                    RestaurantId = 3,
+                                    City = "Keatontown",
+                                    PostalCode = "22076-3754",
+                                    Street = "179 Cormier Spurs"
+                                },
+                                new
+                                {
+                                    RestaurantId = 4,
+                                    City = "South Monicahaven",
+                                    PostalCode = "14363",
+                                    Street = "76993 Senger Trail"
+                                },
+                                new
+                                {
+                                    RestaurantId = 5,
+                                    City = "Sengershire",
+                                    PostalCode = "09327",
+                                    Street = "17747 Alysha Cliffs"
+                                });
                         });
 
                     b.Navigation("Address");

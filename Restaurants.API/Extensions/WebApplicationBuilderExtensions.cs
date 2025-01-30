@@ -32,7 +32,7 @@ namespace Restaurants.API.Extensions
                         },
                         []
                     }
-                    });
+                });
             });
             //tell swagger to support minimal apis, which the Identity apis are.
             builder.Services.AddEndpointsApiExplorer();

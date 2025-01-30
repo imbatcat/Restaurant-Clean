@@ -1,7 +1,9 @@
 @Restaurants.API_HostAddress = https://localhost:7153
-@token = CfDJ8IGx6C_J58VGnHAzo-b4N4pQeCMj-NsCB85zLeH8YYIIyxFiUbgPB32V-Wuy9-_HrHeq7qv0ZIPgyauDH4udYQk-ZNJDrNHACUCMFUo5BB6xfnBJ_pW-4aaWFBwlNBN_wYg59OiP8yiQ54c4Fo2ceq8ZEaoa0GRzQlvV70KzKhGpOE66Egb_VOxgopzi1da1llb0XJPD0TOWT5zhVcn-6ea_M4DuxNhfaDFvLxzgKi7EUCTytfTcMkiZwGs8IEdD-u0Q9r9DqEeMF65Vv74DKiYQibhW4FO7oqqC0nuEuLc8K6Hs-UCjiwSN-sWETWr5nBOKnRnO1tkP2L6EpRiOWyBUaYY6WhPK6SPvCEx1ORuISuBkAeyMT0Bs30eVCLbafkjMY8WfILAakQPSWULM5kvNAD68jO8WfFqaX7zL0M5x_nCwBV12xYouiZlsW5NuEPebePPy-vacDjeMrjabQv9dJpMu9cAFPYBEQP5L5qjSZV2k-xaRqdIciBKRUDGsuUMajFNG84cPQZ2x9qxQJlUVbpXU_KS9d_6ONwTX7MTo1hKF9LJE6yhaLvCJi7gTy8rEQ5bxuvQnM96d_7GwbQu-WTn1rfF5yCZorQ9kdWF82ClqygUQ-rc2N-q2ZkOWyG-3eIrCUH90FoGqBZi9BCDYfB9Ot0f5VGIZmXuBA047GNfNi8UzPKkKoeI9-T1va0c8N-QBUh6zxHw2Z4vtt7YlrSuXBX0JIUHOtREEcojF5wDZs-AseEqJhYbH8HzwES7tCbUI0a4qMsv_sJuWoMxFV8a8ROaeDLR0AxJItCFLofY47NWa-SBMhgWXZkbcWMvDXt3tSOYkv7Zwkt2U4IsbrTkMxXGAlvXkQgjeoN9S2w1BjLzL3AAbL8CqlkpJfg
+@token =CfDJ8IGx6C_J58VGnHAzo-b4N4rgX6ezmI8eEQrle9L1wn76DS7G-rUs4NfCyZyM5LG22sq4dZSrfl5dt_6U_MeR8E3yMRoQGMHt51T9_NUbyi3UtBBzbd7tdTTKHjY-klPBvGH-QkRxHZD6yV185ZaHSEuW4OtxmLS5TYzNzX0wljAEaL0FlBVSbQG3Q0OFBa6f_GCmcnIilXduMnEDrrxmWusJYc-peg28mlGz8GVxfGv8DDqjEoPk_P98736LuyCoMK7MRAxrTObOLLGdTrPJBT9JUFvB-1GPLhwbSY6IqxDEvIOmNFVYr9CY0pdpH8_x9LsqJrGM1WGgNoRxOO0Amu7kfcrZEkWSgIH6qjgqIrsyWqUywQ-pIB_tk6GpXibp70rEm23NYqwzO6j_VqNpWdPINB0jEsT6cCJanB0dKi5L_wekVi8MkNeuUAXSJXAwhrvSMWz-QI7KdClnuqh447z6RjhJn3s7YL0nIEVdXwOVGncWM-tm4KoPsfE_fkDnxNDzhkuT09h7y2IbSO06wjQXnYKI_KyuchEbhEmjnYfmRSclxAcflAevqmCkgpZtohc9M67H6nXr8xNmY07dxFRNq38RlvcdCSJR4zYOEwDwRjkwwzlq8jqQDMRFPrRtHeNzQjXqGaWr4JaTPhOL698qxvbbrDULFFifpV7wnOHPdh1A9xzMM7u_ByVWxH0dIf-yOmZc43HygGLWPcmUnZJUgGs2VEwPIwKDCopwu_ga6AFTINy5jAZxtpFHXMEMOt7kPFCDAEGIa3bxdepzorKkSh5gUd2xsm6eE5iJ3kq3
+
  
  
+
  
  
  
@@ -20,10 +22,10 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "name": "Sushi Place",
-    "description": "A cozy spot for fresh sushi.",
-    "category": "Japanese",
-    "contactEmail": "sushi@example.com",
+    "name": "Eat Live Laugh",
+    "description": "A cozy spot for fresh Pizza.",
+    "category": "Italian",
+    "contactEmail": "pizza@example.com",
     "contactNumber": "123456789",
     "hasDelivery": false,
     "city": "San Francisco",
@@ -102,7 +104,7 @@ POST {{Restaurants.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
-  "email": "user@gmail.com",
+  "email": "owner@gmail.com",
   "password": "Password1!"
 }
 ###
