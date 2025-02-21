@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MindSpace.Infrastructure.Seeders;
 using Restaurants.Domain.Authorization.Requirements;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;
@@ -26,15 +27,19 @@ namespace Restaurants.Infrastructure.Extensions
                 options.UseSqlServer(connectionString)
                     .EnableSensitiveDataLogging();
             });
+
             #region Identities
-            //identity api endpoints already handle 
+
+            //identity api endpoints already handle
             services.AddIdentityApiEndpoints<User>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<RestaurantDbContext>()
-                .AddClaimsPrincipalFactory<RestaurantsUserClaimsPrincipleFactory>();
+                .AddEntityFrameworkStores<RestaurantDbContext>();
+            //.AddClaimsPrincipalFactory<RestaurantsUserClaimsPrincipleFactory>();
+
             #endregion Identities
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IIdentitySeeder, IdentitySeeder>();
             services.AddScoped<IRestaurantsRepository, RestaurantRepository>();
             services.AddScoped<IDishesRepository, DishesRepositories>();
             services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();

@@ -5,6 +5,7 @@ namespace Restaurants.Domain.Repositories
     {
         IDishesRepository dishesRepository {get;}
         IRestaurantsRepository restaurantsRepository {get;}
+        IUserRepository userRepository {get;}
         Task<int> SaveChangesAsync();
     }
 }

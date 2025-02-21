@@ -1,7 +1,6 @@
 ﻿using Restaurants.Domain.Entities;
-using System.Linq.Expressions;
 
-namespace Restaurants.Domain.Specifications
+namespace Restaurants.Applications.Specifications
 {
     public class GetRestaurantWithDishesSpecification : Specification<Restaurant>
     {

@@ -1,9 +1,10 @@
 ﻿using Restaurants.Domain.Entities;
+using Restaurants.Domain.Specifications;
 using System.Linq.Expressions;
 
-namespace Restaurants.Domain.Specifications
+namespace Restaurants.Applications.Specifications
 {
-    public class Specification<TEntity> : ISpecification<TEntity> where TEntity : BaseEntity
+    public class Specification<TEntity> : ISpecification<TEntity> where TEntity : class
     {
         protected Specification(Expression<Func<TEntity, bool>>? criteria)
             => Criteria = criteria;

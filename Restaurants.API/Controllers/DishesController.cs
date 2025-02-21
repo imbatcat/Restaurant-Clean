@@ -5,6 +5,7 @@ using Restaurants.Applications.Dishes.Commands.CreateDishes;
 using Restaurants.Applications.Dishes.Commands.DeleteDishes;
 using Restaurants.Applications.Dishes.Queries.GetAllDishes;
 using Restaurants.Applications.Dishes.Queries.GetDishByIdByRestaurantId;
+using Restaurants.Domain.Constants;
 using Restaurants.Infrastructure.Authorization;
 
 namespace Restaurants.API.Controllers
@@ -24,6 +25,7 @@ namespace Restaurants.API.Controllers
         }
 
         [HttpGet("{dishId}")]
+        [Authorize(Roles = UserRoles.Owner)]
         public async Task<IActionResult> GetDishByIdByRestaurantId([FromRoute] int restaurantId, [FromRoute] int dishId)
         {
             var dish = await mediator.Send(new GetDishByIdByRestaurantIdQuery(restaurantId, dishId));

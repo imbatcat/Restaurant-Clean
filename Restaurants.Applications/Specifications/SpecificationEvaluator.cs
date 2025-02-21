@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurants.Domain.Entities;
+using Restaurants.Domain.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurants.Domain.Specifications
+namespace Restaurants.Applications.Specifications
 {
-    public class SpecificationEvaluator<TEntity> where TEntity : BaseEntity
+    public class SpecificationEvaluator<TEntity> where TEntity : class
     {
         public static IQueryable<TEntity> GetQuery(IQueryable<TEntity> inputQuery, ISpecification<TEntity> specification)
         {

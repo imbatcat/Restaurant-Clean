@@ -1,14 +1,9 @@
 ﻿using Bogus;
-using Bogus.Extensions;
+using Microsoft.Extensions.Logging;
 using Restaurants.Domain.Entities;
-using Restaurants.Infrastructure.Migrations;
-using System.Collections.Generic;
-using System.Linq;
 
 public static class DataGenerator
 {
-    private const string FixedOwnerId = "8c19f413-f040-4142-a7dc-3b369e46aaeb";
-
     // Use static seed to ensure consistent data generation
     private static readonly int Seed = 42;
 
@@ -17,13 +12,15 @@ public static class DataGenerator
     public static List<Address> Addresses = new();
     private static int _restaurantId = 1;
     private static int _dishId = 1;
+    private static readonly string[] FixedOwnerIds = ["d8f1b82e-f13b-446d-9b64-5563ddc79dff", "c125c9c1-9907-47b0-8a34-be8d39cd4774"];
+    private static readonly string[] Categories = { "Italian", "Mexican", "Chinese", "American", "Japanese" };
 
     public static void Init(int count)
     {
-        // Clear existing collections to prevent 
-        //Restaurants.Clear();
-        //Addresses.Clear();
-        //Dishes.Clear();
+        // Clear existing collections to prevent
+        Restaurants.Clear();
+        Addresses.Clear();
+        Dishes.Clear();
 
         // Reset IDs
         _restaurantId = 1;
@@ -47,15 +44,16 @@ public static class DataGenerator
             .RuleFor(r => r.Id, f => _restaurantId++)
             .RuleFor(r => r.Name, f => f.Company.CompanyName())
             .RuleFor(r => r.Description, f => f.Lorem.Paragraph())
-            .RuleFor(r => r.Category, f => f.PickRandom(new[] { "Italian", "Mexican", "Chinese", "American", "Japanese" }))
+            .RuleFor(r => r.Category, f => f.PickRandom(Categories))
             .RuleFor(r => r.HasDelivery, f => f.Random.Bool())
             .RuleFor(r => r.ContactEmail, f => f.Internet.Email())
             .RuleFor(r => r.Contactnumber, f => f.Phone.PhoneNumber())
-            .RuleFor(r => r.OwnerId, FixedOwnerId);
+            .RuleFor(r => r.OwnerId, f => f.PickRandom(FixedOwnerIds));
 
         // Generate restaurants first
         var restaurants = restaurantFaker.Generate(count);
         Restaurants.AddRange(restaurants);
+        Console.WriteLine(Restaurants[0].Id + " " + Restaurants[0].Name);
 
         // Generate addresses for each restaurant
         var addresses = restaurants.Select(r =>
@@ -70,7 +68,7 @@ public static class DataGenerator
         {
             var dishes = dishFaker
                 .RuleFor(d => d.RestaurantId, restaurant.Id)
-                .GenerateBetween(3, 5);
+                .GenerateBetween(3, 8);
 
             Dishes.AddRange(dishes);
         }

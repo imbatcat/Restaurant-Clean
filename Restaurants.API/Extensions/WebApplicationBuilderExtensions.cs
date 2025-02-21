@@ -1,6 +1,11 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Restaurants.API.Middlewares;
+using Restaurants.Applications.Ultilities.Identity.Authentication;
 using Serilog;
+using System.Text;
 
 namespace Restaurants.API.Extensions
 {
@@ -8,17 +13,55 @@ namespace Restaurants.API.Extensions
     {
         public static void AddPresentation(this WebApplicationBuilder builder)
         {
-            builder.Services.AddControllers();
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtAccessTokenSettings:Secret"]!)),
+                    ValidIssuer = builder.Configuration["JwtAccessTokenSettings:Issuer"],
+                    ValidAudience = builder.Configuration["JwtAccessTokenSettings:Audience"],
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                var requireAuthPolicy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
+                options.DefaultPolicy = requireAuthPolicy;
+            });
+
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  policy =>
+                                  {
+                                      policy.AllowAnyHeader()
+                                            .AllowAnyMethod()   
+                                            .AllowAnyOrigin();
+                                  });
+            }); builder.Services.AddControllers();
             builder.Services.AddSwaggerGen(c =>
             {
-                //add bearer authentication to swagger 
-                c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "Bearer"
+                    Title = "jwtToken_Auth",
+                    Version = "v1"
                 });
-
-                //tells swagger that all requests will received a bearer token if any - this does not enforce that the request must have a token
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT here"
+                });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -27,13 +70,15 @@ namespace Restaurants.API.Extensions
                             Reference = new OpenApiReference
                             {
                                 Type = ReferenceType.SecurityScheme,
-                                Id = "bearerAuth"
+                                Id = "Bearer"
                             }
                         },
                         []
                     }
                 });
             });
+            builder.Services.AddSingleton<IdTokenProvider>();
+            builder.Services.AddSingleton<AccessTokenProvider>();
             //tell swagger to support minimal apis, which the Identity apis are.
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddScoped<ErrorHandlingMiddleware>();

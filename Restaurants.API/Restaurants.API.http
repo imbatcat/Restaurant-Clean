@@ -1,13 +1,9 @@
 @Restaurants.API_HostAddress = https://localhost:7153
-@token =CfDJ8IGx6C_J58VGnHAzo-b4N4rgX6ezmI8eEQrle9L1wn76DS7G-rUs4NfCyZyM5LG22sq4dZSrfl5dt_6U_MeR8E3yMRoQGMHt51T9_NUbyi3UtBBzbd7tdTTKHjY-klPBvGH-QkRxHZD6yV185ZaHSEuW4OtxmLS5TYzNzX0wljAEaL0FlBVSbQG3Q0OFBa6f_GCmcnIilXduMnEDrrxmWusJYc-peg28mlGz8GVxfGv8DDqjEoPk_P98736LuyCoMK7MRAxrTObOLLGdTrPJBT9JUFvB-1GPLhwbSY6IqxDEvIOmNFVYr9CY0pdpH8_x9LsqJrGM1WGgNoRxOO0Amu7kfcrZEkWSgIH6qjgqIrsyWqUywQ-pIB_tk6GpXibp70rEm23NYqwzO6j_VqNpWdPINB0jEsT6cCJanB0dKi5L_wekVi8MkNeuUAXSJXAwhrvSMWz-QI7KdClnuqh447z6RjhJn3s7YL0nIEVdXwOVGncWM-tm4KoPsfE_fkDnxNDzhkuT09h7y2IbSO06wjQXnYKI_KyuchEbhEmjnYfmRSclxAcflAevqmCkgpZtohc9M67H6nXr8xNmY07dxFRNq38RlvcdCSJR4zYOEwDwRjkwwzlq8jqQDMRFPrRtHeNzQjXqGaWr4JaTPhOL698qxvbbrDULFFifpV7wnOHPdh1A9xzMM7u_ByVWxH0dIf-yOmZc43HygGLWPcmUnZJUgGs2VEwPIwKDCopwu_ga6AFTINy5jAZxtpFHXMEMOt7kPFCDAEGIa3bxdepzorKkSh5gUd2xsm6eE5iJ3kq3
-
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3NTAzL2FwaS8iLCJpc3MiOiJyZXN0YXVyYW50cyIsImV4cCI6MTczOTQyMjA1Niwic3ViIjoiZTc4NzIwM2QtM2U0Ny00NmY0LWJiM2EtNzU2OWI3ZjUzMzgyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQURNSU4iLCJOYXRpb25hbGl0eSI6Ikdlcm1hbiIsImlhdCI6MTczOTQyMTE1NiwibmJmIjoxNzM5NDIxMTU2fQ.fkekctP0IU-ppsqhEZMCty3yeZlP4ifNtCkvsyznNh0
  
  
 
- 
- 
- 
-GET {{Restaurants.API_HostAddress}}/api/restaurants
+GET {{Restaurants.API_HostAddress}}/api/restaurants?pageNumber=1&pageSize=10&sortBy=Name&sortDirection=Ascending
 Authorization : Bearer {{token}}
 
 ###
@@ -17,7 +13,7 @@ Authorization : Bearer {{token}}
 
 ###
 
-POST {{Restaurants.API_HostAddress}}/api/restaurants
+POST {{Restaurants.API_HostAddress}}/api/restaurantsB
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -50,17 +46,27 @@ Content-Type: application/json
 
 ###
 
-PATCH {{Restaurants.API_HostAddress}}/api/restaurants/1
+PATCH {{Restaurants.API_HostAddress}}/api/restaurants/23
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "HolyMoly",
+  "name": "OptimiusPrime",
   "description": "Come get some"
 }
 
 ###
+PUT {{Restaurants.API_HostAddress}}/api/restaurants/23
+Authorization: Bearer {{token}}
+Content-Type: application/json
 
+{
+  "id": "23",
+  "name": "doraemon123",
+  "description": "Come get some"
+}
+
+###
 GET {{Restaurants.API_HostAddress}}/api/restaurants
 Authorization : Bearer {{token}}
 
@@ -79,13 +85,13 @@ Content-Type: application/json
 
 ###
 
-@restaurantId=2
+@restaurantId=1
 GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes
 Authorization : Bearer {{token}}
 
 ###
 
-@dishId=3
+@dishId=1
 GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes/{{dishId}}
 Authorization : Bearer {{token}}
 
@@ -95,16 +101,17 @@ POST {{Restaurants.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 
 {
-  "email": "owner@gmail.com",
+  "email": "owner3S@gmail.com",
+  "userName": "doraemon123",
   "password": "Password1!"
 }
 
 ###
-POST {{Restaurants.API_HostAddress}}/api/identity/login
+POST {{Restaurants.API_HostAddress}}/api/identities/login
 Content-Type: application/json
 
 {
-  "email": "owner@gmail.com",
+  "email": "student1@example.com",
   "password": "Password1!"
 }
 ###
@@ -113,8 +120,8 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "userEmail": "user@gmail.com",
-  "roleName": "User"
+  "userEmail": "owner@gmail.com",
+  "roleName": "Owner"
 }
 
 ###
@@ -137,4 +144,13 @@ Content-Type: application/json
 {
 
 }
+###
+
+GET {{Restaurants.API_HostAddress}}/api/users
+Authorization: Bearer {{token}}
+
+###
+
+GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes
+
 ###

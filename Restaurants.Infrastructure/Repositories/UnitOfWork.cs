@@ -10,11 +10,14 @@ namespace Restaurants.Infrastructure.Repositories
 
         public IRestaurantsRepository restaurantsRepository { get; private set; }
 
-        public UnitOfWork(RestaurantDbContext restaurantDbContext, IDishesRepository dishesRepository, IRestaurantsRepository restaurantsRepository)
+        public IUserRepository userRepository { get; private set; }
+
+        public UnitOfWork(RestaurantDbContext restaurantDbContext)
         {
             _restaurantDbContext = restaurantDbContext;
-            this.dishesRepository = new DishesRepositories(restaurantDbContext);
-            this.restaurantsRepository = new RestaurantRepository(restaurantDbContext);
+            dishesRepository = new DishesRepositories(restaurantDbContext);
+            restaurantsRepository = new RestaurantRepository(restaurantDbContext);
+            userRepository = new UserRepositories(restaurantDbContext);
         }
 
         public async Task<int> SaveChangesAsync()

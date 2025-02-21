@@ -21,16 +21,17 @@ namespace Restaurants.Applications.Restaurants.Commands.PatchRestaurants
             var restaurant = await restaurantsRepository.GetOneAsync(request.Id);
 
             if (restaurant == null) throw new NotFoundException(nameof(Restaurant), request.Id.ToString());
-            if (restaurantAuthorizationService.Authorize(restaurant, ResourceOperation.Update))
-            {
-                mapper.Map(request, restaurant);
-                //restaurant.Name = request.Name;
-                //restaurant.Description = request.Description;
-                //restaurant.HasDelivery = request.HasDelivery;
+            mapper.Map(request, restaurant);
+            //restaurant.Name = request.Name;
+            //restaurant.Description = request.Description;
+            //restaurant.HasDelivery = request.HasDelivery;
 
-                await restaurantsRepository.PatchAsync(restaurant);
-            }
-            else throw new ForbidenException();
+            await restaurantsRepository.PatchAsync(restaurant);
+
+            //if (restaurantAuthorizationService.Authorize(restaurant, ResourceOperation.Update))
+            //{
+            //}
+            //else throw new ForbidenException();
         }
     }
 }

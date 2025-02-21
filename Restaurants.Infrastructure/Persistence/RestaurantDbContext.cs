@@ -4,7 +4,7 @@ using Restaurants.Domain.Entities;
 
 namespace Restaurants.Infrastructure.Persistence
 {
-    internal class RestaurantDbContext : IdentityDbContext<User>
+    public class RestaurantDbContext : IdentityDbContext<User>
     {
         public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
         {
@@ -36,14 +36,12 @@ namespace Restaurants.Infrastructure.Persistence
                 .WithOne(r => r.Owner)
                 .HasForeignKey(fk => fk.OwnerId);
 
-            DataGenerator.Init(5);
-
-            ////FakeData.Init(10);
-            ////FakeData.GenerateRestaurants(3);
-            //// Seed data in DbContext
+            modelBuilder.Entity<Restaurant>().OwnsOne(r => r.Address);
+            // Seed data in DbContext
+            DataGenerator.Init(20);
+            modelBuilder.Entity<Dish>().HasData(DataGenerator.Dishes);
             modelBuilder.Entity<Restaurant>().HasData(DataGenerator.Restaurants);
             modelBuilder.Entity<Restaurant>().OwnsOne(r => r.Address).HasData(DataGenerator.Addresses);
-            modelBuilder.Entity<Dish>().HasData(DataGenerator.Dishes);
         }
     }
 }
